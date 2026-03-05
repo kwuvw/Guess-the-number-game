@@ -1,6 +1,5 @@
 // To-do
-// Сделать сохранение статистики игр в файл
-// общее кол-во игр, больше, меньше
+// сделать полную игру которая заканчивается только при кнопке выхода
 
 
 import java.io.IOException;
@@ -20,24 +19,24 @@ public class Main {
 
         System.out.println("Привет в веселой игре\nПопробуй угадать все числа которые я загадаю!");
 
+        while (true) {
+            System.out.println("\n1.Начать игру\n2.Статистика\n0.Выйти");
+            int menu = Number.nextInt();
 
-        System.out.println("1.Начать игру\n2)Статистика\n0.Выйти");
-        int menu = Number.nextInt();
+            switch (menu) {
+                case 1:
+                    Game();
+                    break;
 
-        switch (menu){
-            case 1:
-                Game();
-                break;
+                case 2:
+                    showStatistics();
+                    break;
 
-            case 2:
-                showStatistics();
-                break;
-
-            case 3:
-                System.out.println("Выход из игры...");
-                break;
+                case 0:
+                    System.out.println("Выход из игры...");
+                    return;
+            }
         }
-
     }
     public static void Game() throws IOException {
         Random randomNumber = new Random();
@@ -50,14 +49,14 @@ public class Main {
             System.out.println("Угадай число!:");
             int guesser = guesserNumber.nextInt();
             if(guesser == number){
-                System.out.println("Поздравляю! Ты угадал");
+                System.out.println("Поздравляю! Ты угадал\n");
                 FileSaveStatistic(0);
                 break;
             } else if (guesser < number) {
-                System.out.println("Число которое я загадал больше!");
+                System.out.println("Число которое я загадал больше!\n");
                 FileSaveStatistic(1);
-            }else{
-                System.out.println("Число которое я загадал меньше!");
+            }else {
+                System.out.println("Число которое я загадал меньше!\n");
                 FileSaveStatistic(2);
             }
         }
